@@ -1,0 +1,50 @@
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: Twitterbot
+Allow: /
+
+User-agent: facebookexternalhit
+Allow: /
+
+# Allow all search engines
+User-agent: *
+Allow: /
+
+# Block legacy WordPress URL patterns (from previous site)
+Disallow: /product-tag/
+Disallow: /product-brand/
+Disallow: /product-category/
+Disallow: /raw-spices/
+Disallow: /virtual-spice-bar/
+Disallow: /fortified-spice/
+Disallow: /shop-carousel
+Disallow: /deals-of-the-day
+Disallow: /about-us
+Disallow: /wp-content/
+Disallow: /wp-admin/
+Disallow: /wp-includes/
+
+# Block admin/internal routes from indexing
+Disallow: /admin/
+Disallow: /admin-dashboard
+Disallow: /employee-dashboard/
+Disallow: /role-management
+Disallow: /recipe-management
+
+# Allow important pages
+Allow: /shop
+Allow: /about
+Allow: /recipes
+Allow: /contact
+Allow: /store-locator
+Allow: /forum
+Allow: /careers
+Allow: /become-stockist
+Allow: /track-order
+
+# Sitemap location
+Sitemap: https://maharajasspices.co.za/sitemap.xml

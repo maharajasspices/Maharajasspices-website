@@ -1,0 +1,1 @@
+DELETE FROM invoices WHERE order_id = '48a8d189-5549-4725-accd-932409004b16';

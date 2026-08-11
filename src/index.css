@@ -1,0 +1,202 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+All colors MUST be HSL.
+*/
+
+@layer base {
+:root {
+    --background: 0 0% 100%;
+    --foreground: 0 0% 5%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 5%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 5%;
+
+    /* Brand red - vibrant and bold */
+    --primary: 0 84% 50%;
+    --primary-foreground: 0 0% 100%;
+
+    /* Secondary - deep black for contrast */
+    --secondary: 0 0% 10%;
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 0 0% 96%;
+    --muted-foreground: 0 0% 45%;
+
+    /* Warm spice accent - amber/gold tones */
+    --accent: 35 92% 55%;
+    --accent-foreground: 0 0% 10%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 0 0% 90%;
+    --input: 0 0% 95%;
+    --ring: 0 84% 50%;
+
+    --radius: 0.5rem;
+    
+    /* Custom brand colors */
+    --brand-red: 0 84% 50%;
+    --brand-black: 0 0% 5%;
+    --brand-gold: 35 92% 55%;
+    
+    /* Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(0 84% 50%), hsl(0 84% 40%));
+    --gradient-hero: linear-gradient(to right, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.4));
+    
+    /* Shadows */
+    --shadow-elegant: 0 10px 30px -10px hsl(0 84% 50% / 0.3);
+    --shadow-strong: 0 20px 50px -15px hsl(0 0% 0% / 0.5);
+    
+    /* Transitions */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    
+    /* Fonts */
+    --font-family-heading: 'Playfair Display', serif;
+    --font-family-body: 'Poppins', sans-serif;
+
+    --sidebar-background: 0 0% 98%;
+
+    --sidebar-foreground: 240 5.3% 26.1%;
+
+    --sidebar-primary: 240 5.9% 10%;
+
+    --sidebar-primary-foreground: 0 0% 98%;
+
+    --sidebar-accent: 240 4.8% 95.9%;
+
+    --sidebar-accent-foreground: 240 5.9% 10%;
+
+    --sidebar-border: 220 13% 91%;
+
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+.dark {
+    --background: 0 0% 5%;
+    --foreground: 0 0% 98%;
+
+    --card: 0 0% 10%;
+    --card-foreground: 0 0% 98%;
+
+    --popover: 0 0% 10%;
+    --popover-foreground: 0 0% 98%;
+
+    --primary: 0 84% 50%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 0 0% 15%;
+    --secondary-foreground: 0 0% 98%;
+
+    --muted: 0 0% 15%;
+    --muted-foreground: 0 0% 65%;
+
+    --accent: 35 92% 55%;
+    --accent-foreground: 0 0% 10%;
+
+    --destructive: 0 62.8% 40%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 0 0% 20%;
+    --input: 0 0% 20%;
+    --ring: 0 84% 50%;
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+    font-family: 'Poppins', sans-serif;
+  }
+
+  html, body {
+    overflow-x: hidden;
+    max-width: 100vw;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    min-height: 100vh;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Playfair Display', serif;
+  }
+  
+  /* Custom styled date inputs to match theme */
+  input[type="date"] {
+    @apply bg-background text-foreground;
+    color-scheme: light;
+  }
+  
+  input[type="date"]::-webkit-calendar-picker-indicator {
+    @apply cursor-pointer;
+    filter: invert(11%) sepia(97%) saturate(7426%) hue-rotate(4deg) brightness(98%) contrast(114%);
+  }
+  
+  .dark input[type="date"] {
+    color-scheme: dark;
+  }
+  
+  .dark input[type="date"]::-webkit-calendar-picker-indicator {
+    filter: invert(11%) sepia(97%) saturate(7426%) hue-rotate(4deg) brightness(98%) contrast(114%);
+  }
+
+  /* Custom Scrollbar Styling */
+  ::-webkit-scrollbar {
+    width: 12px;
+    height: 12px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: hsl(var(--muted));
+    border-radius: 6px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: hsl(var(--primary));
+    border-radius: 6px;
+    border: 2px solid hsl(var(--muted));
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: hsl(var(--primary) / 0.8);
+  }
+
+  /* Firefox Scrollbar */
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: hsl(var(--primary)) hsl(var(--muted));
+  }
+}
+
+/* Utility to hide scrollbar while keeping scroll functionality */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+/* Chatbot mobile positioning - above mobile nav for WebView compatibility */
+@media (max-width: 767px) {
+  button[aria-label="Open chat"] {
+    bottom: calc(5rem + env(safe-area-inset-bottom, 0px)) !important;
+  }
+}

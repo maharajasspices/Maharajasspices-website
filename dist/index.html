@@ -1,0 +1,320 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <!-- IE compatibility mode -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <!-- Critical preconnects FIRST for fastest connection -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://dhafduzlhpartlvsgbqx.supabase.co" crossorigin>
+    <link rel="preconnect" href="https://ipapi.co" crossorigin>
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+    <link rel="dns-prefetch" href="https://dhafduzlhpartlvsgbqx.supabase.co">
+    <link rel="dns-prefetch" href="https://ipapi.co">
+    
+    <!-- WebView optimization meta tags -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes, viewport-fit=cover" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="/manifest.json" />
+    <meta name="theme-color" content="#d32f2f" />
+    
+    <title>Maharaja&#39;s Spices - Premium Spices, Sauces &amp; Seasonings</title>
+    <meta name="description" content="Maharaja&#39;s Spices offers premium quality spices, sauces, marinades and seasonings. Wholesale and manufacturing business founded in 2012. Shop online for delivery across South Africa.">
+    <meta name="author" content="Maharaja's Spices" />
+    <meta name="keywords" content="spices, sauces, marinades, seasonings, South African spices, wholesale spices, curry powder, garam masala, cooking ingredients">
+    
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="https://storage.googleapis.com/gpt-engineer-file-uploads/7MWfqDv7R4gFKWkcyzKzdrJCEnf1/social-images/social-1771408092493-c8e2a9fe-baca-40b9-8418-9acbd796dc4c-overlay_(2).webp">
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content="https://storage.googleapis.com/gpt-engineer-file-uploads/7MWfqDv7R4gFKWkcyzKzdrJCEnf1/social-images/social-1771408092493-c8e2a9fe-baca-40b9-8418-9acbd796dc4c-overlay_(2).webp">
+    
+    <link rel="canonical" href="https://maharajasspices.co.za" />
+    
+    <!-- Preload LCP images - critical for ALL screen sizes -->
+    <link rel="preload" href="/hero-spices.webp" as="image" type="image/webp" fetchpriority="high">
+    <link rel="preload" href="/marinades-background.webp" as="image" type="image/webp" fetchpriority="high">
+    
+    <!-- Google Fonts - Fully async loading with font-display swap -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Playfair+Display:wght@700;800;900&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Playfair+Display:wght@700;800;900&display=swap" rel="stylesheet"></noscript>
+    
+    <!-- Google Analytics - Add your GA4 Measurement ID below -->
+    <!-- Get your ID from https://analytics.google.com/ then uncomment:
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-XXXXXXXXXX');
+    </script>
+    -->
+    
+    
+    
+    
+    
+    <style>
+      /* Critical CSS for FCP - with fallbacks for older browsers */
+      :root {
+        --background: 0 0% 100%;
+        --foreground: 0 0% 3.9%;
+        --primary: 0 72% 51%;
+        --primary-foreground: 0 0% 98%;
+        --card: 0 0% 100%;
+        --muted: 0 0% 96.1%;
+      }
+      *,*::before,*::after{box-sizing:border-box}
+      html{-webkit-text-size-adjust:100%;-moz-text-size-adjust:100%;text-size-adjust:100%}
+      body {
+        margin: 0;
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        background-color: #ffffff;
+        background-color: hsl(var(--background));
+        color: #0a0a0a;
+        color: hsl(var(--foreground));
+        -webkit-font-smoothing: antialiased;
+        line-height: 1.5;
+      }
+      #root {
+        min-height: 100vh;
+      }
+      /* Ultra-lightweight initial loader - text-only for fastest FCP */
+      .initial-loader {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+        background: #1a1a1a;
+        background: hsl(0 0% 10%);
+      }
+      .initial-loader-content {
+        text-align: center;
+      }
+      .initial-loader-text {
+        color: #e53935;
+        color: hsl(0 72% 51%);
+        font-size: 1.75rem;
+        font-weight: 700;
+      }
+      .initial-loader-sub {
+        color: #b3b3b3;
+        color: hsl(0 0% 70%);
+        font-size: 0.875rem;
+        margin-top: 0.5rem;
+      }
+      /* WebView fixes */
+      [data-sonner-toaster]{position:fixed!important;z-index:999999!important}
+      [data-sonner-toast]{font-size:14px!important;min-height:48px!important;padding:12px 16px!important}
+      [data-radix-popper-content-wrapper],[data-radix-portal]{z-index:99999!important}
+      *{-webkit-overflow-scrolling:touch}
+      @keyframes bounce{0%,80%,100%{transform:scale(0)}40%{transform:scale(1)}}
+      @keyframes pulse{0%,100%{opacity:1}50%{opacity:0.6}}
+      /* Hide loader once React renders */
+      #root:not(:empty) .initial-loader{display:none}
+    </style>
+    
+  
+  
+  
+
+  <!-- Structured Data: WebSite with SearchAction (helps Google show sitelinks search box) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "Maharaja's Spices",
+    "alternateName": "Maharajas Spices",
+    "url": "https://maharajasspices.co.za",
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": "https://maharajasspices.co.za/shop?search={search_term_string}",
+      "query-input": "required name=search_term_string"
+    }
+  }
+  </script>
+
+  <!-- Structured Data: SiteNavigationElement (helps Google generate sitelinks) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "SiteNavigationElement",
+        "name": "Shop",
+        "description": "Browse our full range of premium spices, sauces, marinades, seasonings and more.",
+        "url": "https://maharajasspices.co.za/shop"
+      },
+      {
+        "@type": "SiteNavigationElement",
+        "name": "About Us",
+        "description": "Learn about Maharaja's Spices – our story, our founder Elaine Pillay, and our mission since 2012.",
+        "url": "https://maharajasspices.co.za/about"
+      },
+      {
+        "@type": "SiteNavigationElement",
+        "name": "Recipes",
+        "description": "Discover delicious recipes using Maharaja's Spices products – curries, stews, marinades and more.",
+        "url": "https://maharajasspices.co.za/recipes"
+      },
+      {
+        "@type": "SiteNavigationElement",
+        "name": "Contact Us",
+        "description": "Get in touch with Maharaja's Spices for orders, enquiries, or customer support.",
+        "url": "https://maharajasspices.co.za/contact"
+      },
+      {
+        "@type": "SiteNavigationElement",
+        "name": "Store Locator",
+        "description": "Find Maharaja's Spices products at a store near you across South Africa.",
+        "url": "https://maharajasspices.co.za/store-locator"
+      },
+      {
+        "@type": "SiteNavigationElement",
+        "name": "Become a Stockist",
+        "description": "Apply to become a wholesale stockist and partner with Maharaja's Spices.",
+        "url": "https://maharajasspices.co.za/become-stockist"
+      },
+      {
+        "@type": "SiteNavigationElement",
+        "name": "Track Your Order",
+        "description": "Track your Maharaja's Spices order with your order number or tracking reference.",
+        "url": "https://maharajasspices.co.za/track-order"
+      },
+      {
+        "@type": "SiteNavigationElement",
+        "name": "Careers",
+        "description": "Join the Maharaja's Spices team – view current job openings and career opportunities.",
+        "url": "https://maharajasspices.co.za/careers"
+      },
+      {
+        "@type": "SiteNavigationElement",
+        "name": "Login",
+        "description": "Sign in to your Maharaja's Spices account to manage orders and preferences.",
+        "url": "https://maharajasspices.co.za/auth"
+      }
+    ]
+  }
+  </script>
+
+  <!-- Structured Data: LocalBusiness (helps Google show business info in search results) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "Maharaja's Spices",
+    "image": "https://storage.googleapis.com/gpt-engineer-file-uploads/7MWfqDv7R4gFKWkcyzKzdrJCEnf1/social-images/social-1771408092493-c8e2a9fe-baca-40b9-8418-9acbd796dc4c-overlay_(2).webp",
+    "url": "https://maharajasspices.co.za",
+    "telephone": "+27-68-405-1374",
+    "email": "e-commerce@maharajasspices.co.za",
+    "description": "Premium quality spices, sauces, marinades and seasonings manufacturer. Wholesale and retail since 2012. Shop online for delivery across South Africa.",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Unit 5, Shallcross Industrial Park",
+      "addressLocality": "Shallcross",
+      "addressRegion": "KZN",
+      "postalCode": "4093",
+      "addressCountry": "ZA"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": -29.8587,
+      "longitude": 30.8891
+    },
+    "openingHoursSpecification": [
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"],
+        "opens": "08:00",
+        "closes": "17:00"
+      },
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": "Saturday",
+        "opens": "08:00",
+        "closes": "14:00"
+      }
+    ],
+    "priceRange": "R15 - R500",
+    "sameAs": []
+  }
+  </script>
+
+  <!-- Structured Data: BreadcrumbList (helps Google show breadcrumbs in search) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://maharajasspices.co.za/" },
+      { "@type": "ListItem", "position": 2, "name": "Shop", "item": "https://maharajasspices.co.za/shop" },
+      { "@type": "ListItem", "position": 3, "name": "Recipes", "item": "https://maharajasspices.co.za/recipes" },
+      { "@type": "ListItem", "position": 4, "name": "About Us", "item": "https://maharajasspices.co.za/about" },
+      { "@type": "ListItem", "position": 5, "name": "Contact", "item": "https://maharajasspices.co.za/contact" }
+    ]
+  }
+  </script>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <meta property="og:title" content="Maharaja&#39;s Spices - Premium Spices, Sauces &amp; Seasonings">
+  <meta name="twitter:title" content="Maharaja&#39;s Spices - Premium Spices, Sauces &amp; Seasonings">
+  <meta property="og:description" content="Maharaja&#39;s Spices offers premium quality spices, sauces, marinades and seasonings. Wholesale and manufacturing business founded in 2012. Shop online for delivery across South Africa.">
+  <meta name="twitter:description" content="Maharaja&#39;s Spices offers premium quality spices, sauces, marinades and seasonings. Wholesale and manufacturing business founded in 2012. Shop online for delivery across South Africa.">
+  <script type="module" crossorigin src="/assets/index-Dhbk8uCd.js"></script>
+  <link rel="modulepreload" crossorigin href="/assets/react-vendor-CNQzBvvq.js">
+  <link rel="modulepreload" crossorigin href="/assets/ui-vendor-Bl_daQg_.js">
+  <link rel="modulepreload" crossorigin href="/assets/supabase-BeVAEaUs.js">
+  <link rel="modulepreload" crossorigin href="/assets/charts-DKaI_6OW.js">
+  <link rel="stylesheet" crossorigin href="/assets/index-Bok2V__s.css">
+</head>
+
+  <body>
+    <div id="root">
+      <!-- Branded splash screen -->
+      <div class="initial-loader" aria-label="Loading Maharaja's Spices">
+        <div class="initial-loader-content">
+          <img src="/invoice-logo.png" alt="Maharaja's Spices" style="width:120px;height:120px;object-fit:contain;margin:0 auto 1.5rem;display:block;animation:pulse 2s ease-in-out infinite" />
+          <p class="initial-loader-text">Maharaja's Spices</p>
+          <p class="initial-loader-sub" style="font-style:italic;margin-top:0.75rem">Welcome to a world of flavour</p>
+          <div style="margin-top:1.5rem;display:flex;justify-content:center;gap:6px">
+            <span style="width:8px;height:8px;border-radius:50%;background:hsl(0 72% 51%);animation:bounce 1.4s infinite ease-in-out;animation-delay:0s"></span>
+            <span style="width:8px;height:8px;border-radius:50%;background:hsl(0 72% 51%);animation:bounce 1.4s infinite ease-in-out;animation-delay:0.2s"></span>
+            <span style="width:8px;height:8px;border-radius:50%;background:hsl(0 72% 51%);animation:bounce 1.4s infinite ease-in-out;animation-delay:0.4s"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Ensure CSS loads properly on all browsers including legacy -->
+    <script>
+      (function(){
+        // Force all stylesheets to load with media="all" for compatibility
+        var d=document;
+        function ensureStyles(){
+          var l=d.querySelectorAll('link[rel="stylesheet"]');
+          for(var i=0;i<l.length;i++){
+            l[i].media='all';
+          }
+        }
+        if(d.readyState==='loading'){d.addEventListener('DOMContentLoaded',ensureStyles)}else{ensureStyles()}
+        // Also run after a short delay for dynamically injected styles
+        setTimeout(ensureStyles,100);
+        setTimeout(ensureStyles,500);
+      })();
+    </script>
+  </body>
+</html>

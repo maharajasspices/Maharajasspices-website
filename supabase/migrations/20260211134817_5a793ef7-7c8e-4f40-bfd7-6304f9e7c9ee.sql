@@ -1,0 +1,1 @@
+ALTER TABLE public.invoices ALTER COLUMN seller_address SET DEFAULT 'Unit 17, 10A Rockwood Business Park, Woodlands Dr, Waterfall, Durban, 3610';

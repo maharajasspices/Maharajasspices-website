@@ -1,0 +1,1 @@
+UPDATE orders SET status = 'processing' WHERE id = 'e9d7a410-acf1-4e5b-8a59-fd18ec9ef1d2' AND status = 'pending';

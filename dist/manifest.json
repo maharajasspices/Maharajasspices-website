@@ -1,0 +1,17 @@
+{
+  "name": "Maharaja's Spices",
+  "short_name": "Maharajas",
+  "description": "Premium quality spices, sauces, marinades and seasonings",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#d32f2f",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/favicon.ico",
+      "sizes": "any",
+      "type": "image/x-icon"
+    }
+  ]
+}

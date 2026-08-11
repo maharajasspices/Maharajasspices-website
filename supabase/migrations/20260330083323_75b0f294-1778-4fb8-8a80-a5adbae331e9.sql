@@ -1,0 +1,1 @@
+UPDATE products SET name = REPLACE(name, 'Speical', 'Special') WHERE name LIKE '%Speical%';

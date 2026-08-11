@@ -1,0 +1,2 @@
+import{c as s}from"./supabase-BeVAEaUs.js";import"./ui-vendor-Bl_daQg_.js";import"./react-vendor-CNQzBvvq.js";const t="https://dhafduzlhpartlvsgbqx.supabase.co",e="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRoYWZkdXpsaHBhcnRsdnNnYnF4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjI5MzYxODcsImV4cCI6MjA3ODUxMjE4N30.Gap7YK8lmkOLoeKwl0xvo-DJEbHCAg8qKCnYyQ7Lbzw",a=s(t,e,{auth:{storage:localStorage,persistSession:!0,autoRefreshToken:!0}});export{a as supabase};
+//# sourceMappingURL=client-BuweI398.js.map

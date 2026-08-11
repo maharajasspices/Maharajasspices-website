@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="gcm_defaultSenderId" translatable="false">433027808260</string>
+    <string name="google_api_key" translatable="false">AIzaSyBzoiyQi72ZHYS-jRR8fRr11pQHcca6dyU</string>
+    <string name="google_app_id" translatable="false">1:433027808260:android:dfd1891c2899f9f3218951</string>
+    <string name="google_crash_reporting_api_key" translatable="false">AIzaSyBzoiyQi72ZHYS-jRR8fRr11pQHcca6dyU</string>
+    <string name="google_storage_bucket" translatable="false">maharaja-s-spices.firebasestorage.app</string>
+    <string name="project_id" translatable="false">maharaja-s-spices</string>
+</resources>
