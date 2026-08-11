@@ -1,0 +1,5 @@
+---
+deployment:
+  tasks:
+    - export DEPLOYPATH=/home/maharaja/public_html/maharajasspices.co.za/
+    - /bin/cp -R dist/* $DEPLOYPATH
