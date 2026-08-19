@@ -83,7 +83,9 @@ const ForumTopic = () => {
         .eq('user_id', session.user.id);
       
       const hasEmployeeRole = roles?.some(r => r.role === 'employee' || r.role === 'admin');
-      setIsEmployee(hasEmployeeRole || false);
+      const userEmail = (session.user.email || "").toLowerCase();
+      const isAdminEmail = ["bradley@maharajasspices.co.za", "zulaigah.benjamin@maharajasspices.co.za"].includes(userEmail);
+      setIsEmployee(hasEmployeeRole || isAdminEmail || false);
     }
   };
 

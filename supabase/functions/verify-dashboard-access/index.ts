@@ -78,14 +78,28 @@ Deno.serve(async (req) => {
       );
     }
 
+    const ADMIN_EMAILS = [
+      "bradley@maharajasspices.co.za",
+      "zulaigah.benjamin@maharajasspices.co.za",
+    ];
+
     const hasPrivilegedRole = roles?.some(
       (r: any) => r.role === "employee" || r.role === "admin"
-    );
+    ) || ADMIN_EMAILS.includes(userEmail);
 
     if (!hasPrivilegedRole) {
       return new Response(
         JSON.stringify({ success: false, error: "Insufficient permissions" }),
         { status: 403, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+      );
+    }
+
+    // Admin users bypass the password check - they already have full privileges
+    if (ADMIN_EMAILS.includes(userEmail)) {
+      console.log("Admin dashboard access granted by email:", userEmail);
+      return new Response(
+        JSON.stringify({ success: true }),
+        { status: 200, headers: { ...corsHeaders, "Content-Type": "application/json" } }
       );
     }
 

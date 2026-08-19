@@ -239,8 +239,10 @@ const AdminDashboard = () => {
 
     const hasAdminRole = roles?.some(r => r.role === "admin");
     const hasEmployeeRole = roles?.some(r => r.role === "employee");
+    const userEmail = (session.user.email || "").toLowerCase();
+    const isAdminEmail = ["bradley@maharajasspices.co.za", "zulaigah.benjamin@maharajasspices.co.za"].includes(userEmail);
 
-    if (!hasAdminRole && !hasEmployeeRole) {
+    if (!hasAdminRole && !hasEmployeeRole && !isAdminEmail) {
       toast({
         variant: "destructive",
         title: "Access Denied",

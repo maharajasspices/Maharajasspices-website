@@ -30,6 +30,17 @@ const DashboardProtection = ({ children }: DashboardProtectionProps) => {
         return;
       }
 
+      const userEmail = (session.user.email || "").toLowerCase();
+      const isAdminEmail = ["bradley@maharajasspices.co.za", "zulaigah.benjamin@maharajasspices.co.za"].includes(userEmail);
+
+      // Admin emails bypass the password check
+      if (isAdminEmail) {
+        setIsAuthenticated(true);
+        setError("");
+        setIsLoading(false);
+        return;
+      }
+
       const response = await supabase.functions.invoke("verify-dashboard-access", {
         body: { password },
       });

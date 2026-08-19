@@ -53,8 +53,10 @@ const RoleManagement = () => {
         .eq("user_id", session.user.id);
 
       const hasAdminRole = roles?.some(r => r.role === "admin");
+      const userEmail = (session.user.email || "").toLowerCase();
+      const isAdminEmail = ["bradley@maharajasspices.co.za", "zulaigah.benjamin@maharajasspices.co.za"].includes(userEmail);
       
-      if (!hasAdminRole) {
+      if (!hasAdminRole && !isAdminEmail) {
         toast({
           variant: "destructive",
           title: "Access Denied",

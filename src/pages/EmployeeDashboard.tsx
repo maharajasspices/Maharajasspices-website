@@ -52,6 +52,20 @@ const statusConfig: Record<string, { label: string; color: string; icon: typeof 
   payment_failed: { label: "Payment Failed", color: "bg-red-500/10 text-red-600 border-red-500/20", icon: AlertCircle },
 };
 
+const safeFormatDate = (
+  dateValue: string | null | undefined, 
+  dateFormat: string = "PPp"
+)=> {
+  if (!dateValue) return "N/A";
+  const date = new Date(dateValue);
+
+  if (isNaN(date.getTime())){
+    console.warn("Invalid date value:", dateValue);
+    return "N/A";
+  }
+  return format(date, dateFormat);
+}
+
 const EmployeeDashboard = () => {
   const navigate = useNavigate();
   const [isAuthorized, setIsAuthorized] = useState(false);
@@ -99,6 +113,7 @@ const EmployeeDashboard = () => {
     }
 
     const normalizedEmail = (portalAccess.user?.email || "").toLowerCase();
+    const isAdminEmail = ["bradley@maharajasspices.co.za", "zulaigah.benjamin@maharajasspices.co.za"].includes(normalizedEmail);
     const isBradleyUser = normalizedEmail === "bradley@maharajasspices.co.za";
 
     setCurrentUser({
@@ -106,12 +121,14 @@ const EmployeeDashboard = () => {
       email: normalizedEmail,
       full_name: portalAccess.user?.user_metadata?.full_name ?? null,
     });
-    setIsAdmin(portalAccess.isAdmin || isBradleyUser);
+    setIsAdmin(portalAccess.isAdmin || isAdminEmail);
     setIsBradley(isBradleyUser);
     setIsSeniorEmployee(portalAccess.isSeniorEmployee);
     setIsAuthorized(true);
     setLoading(false);
   }, [navigate, portalAccess.isAdmin, portalAccess.isEmployee, portalAccess.isLoading, portalAccess.isLoggedIn, portalAccess.isSeniorEmployee, portalAccess.user]);
+
+  
 
   const fetchOrders = useCallback(async () => {
     setLoadingOrders(true);
@@ -483,21 +500,49 @@ const EmployeeDashboard = () => {
                         <TableBody>
                           {invoices.map(inv => (
                             <TableRow key={inv.id}>
-                              <TableCell className="font-mono text-sm">{inv.invoice_number}</TableCell>
-                              <TableCell className="text-sm">{format(new Date(inv.created_at), "PPp")}</TableCell>
-                              <TableCell>
-                                <p className="text-sm font-medium">{inv.customer_name}</p>
-                                <p className="text-xs text-muted-foreground">{inv.customer_email}</p>
-                              </TableCell>
-                              <TableCell className="text-right font-medium">R{inv.total_incl_vat?.toFixed(2)}</TableCell>
-                              <TableCell>
-                                <div className="flex gap-1">
-                                  <Button size="sm" variant="ghost" onClick={() => setSelectedInvoice(inv)}><Eye className="h-4 w-4" /></Button>
-                                  <Button size="sm" variant="ghost" onClick={() => handleDownloadInvoice(inv.order_id, inv.invoice_number)} disabled={downloadingInvoice === inv.order_id}>
-                                    {downloadingInvoice === inv.order_id ? <Loader2 className="h-4 w-4 animate-spin" /> : <Download className="h-4 w-4" />}
-                                  </Button>
-                                </div>
-                              </TableCell>
+                             <TableCell className="font-mono text-sm">
+                              {inv.invoice_number}
+                            </TableCell>
+
+                            <TableCell className="text-sm">
+                              {safeFormatDate(inv.created_at, "PPp")}
+                            </TableCell>
+
+                            <TableCell>
+                              <p className="text-sm font-medium">{inv.customer_name}</p>
+                              <p className="text-xs text-muted-foreground">{inv.customer_email}</p>
+                            </TableCell>
+
+                            <TableCell className="text-right font-medium">
+                              R{inv.total_incl_vat?.toFixed(2)}
+                            </TableCell>
+
+                            <TableCell>
+                              <div className="flex gap-1">
+                                <Button
+                                  size="sm"
+                                  variant="ghost"
+                                  onClick={() => setSelectedInvoice(inv)}
+                                >
+                                  <Eye className="h-4 w-4" />
+                                </Button>
+
+                                <Button
+                                  size="sm"
+                                  variant="ghost"
+                                  onClick={() =>
+                                    handleDownloadInvoice(inv.order_id, inv.invoice_number)
+                                  }
+                                  disabled={downloadingInvoice === inv.order_id}
+                                >
+                                  {downloadingInvoice === inv.order_id ? (
+                                    <Loader2 className="h-4 w-4 animate-spin" />
+                                  ) : (
+                                    <Download className="h-4 w-4" />
+                                  )}
+                                </Button>
+                              </div>
+                            </TableCell>
                             </TableRow>
                           ))}
                         </TableBody>

@@ -6,7 +6,10 @@ const SENIOR_EMPLOYEE_EMAILS = [
   "desmond.amos@marajasspices.co.za",
 ] as const;
 
-const BRADLEY_EMAIL = "bradley@maharajasspices.co.za";
+const ADMIN_EMAILS = [
+  "bradley@maharajasspices.co.za",
+  "zulaigah.benjamin@maharajasspices.co.za",
+] as const;
 
 type PortalAccessState = {
   isLoading: boolean;
@@ -61,11 +64,11 @@ export const usePortalAccess = (): PortalAccessState => {
       const adminRole = adminRoleResult.status === "fulfilled" ? Boolean(adminRoleResult.value.data) : false;
       const profileEmail = profileResult.status === "fulfilled" ? profileResult.value.data?.email ?? "" : "";
       const normalizedEmail = (currentUser.email || profileEmail || "").toLowerCase();
-      const isBradley = normalizedEmail === BRADLEY_EMAIL;
+      const isAdminEmail = ADMIN_EMAILS.includes(normalizedEmail as (typeof ADMIN_EMAILS)[number]);
 
       setLikedCount(likedCountValue);
-      setIsAdmin(adminRole || isBradley);
-      setIsEmployee(employeeRole || adminRole || isBradley);
+      setIsAdmin(adminRole || isAdminEmail);
+      setIsEmployee(employeeRole || adminRole || isAdminEmail);
       setIsSeniorEmployee(SENIOR_EMPLOYEE_EMAILS.includes(normalizedEmail as (typeof SENIOR_EMPLOYEE_EMAILS)[number]));
     } finally {
       setIsLoading(false);
