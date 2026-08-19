@@ -61,10 +61,10 @@ const defaultRecipesData: Recipe[] = [
       "1 tomato, finely chopped",
       "1 medium potato, cubed",
       "Salt, to taste",
-      "2 Maharaja's Star Aniseed",
-      "1 Maharaja's Cinnamon Stick",
+      "2 Maharaja's Star Aniseed ",
+      "1 Maharaja's Cinnamon Stick ",
       "20g Maharaja's Crushed Ginger & Garlic",
-      "Fresh coriander, for garnish",
+      "Fresh Coriander, for garnish",
     ],
     instructions: [
       "Heat oil in a pot on medium heat. Add the cinnamon sticks, bay leaves, star anise, and cardamom. Sauté until fragrant.",
