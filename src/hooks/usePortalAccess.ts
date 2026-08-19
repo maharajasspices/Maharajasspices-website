@@ -1,14 +1,10 @@
 import { useCallback, useEffect, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
+import { isAdminEmail } from "@/lib/admin";
 
 const SENIOR_EMPLOYEE_EMAILS = [
   "marketing@maharajasspices.co.za",
   "desmond.amos@marajasspices.co.za",
-] as const;
-
-const ADMIN_EMAILS = [
-  "bradley@maharajasspices.co.za",
-  "zulaigah.benjamin@maharajasspices.co.za",
 ] as const;
 
 type PortalAccessState = {
@@ -64,11 +60,11 @@ export const usePortalAccess = (): PortalAccessState => {
       const adminRole = adminRoleResult.status === "fulfilled" ? Boolean(adminRoleResult.value.data) : false;
       const profileEmail = profileResult.status === "fulfilled" ? profileResult.value.data?.email ?? "" : "";
       const normalizedEmail = (currentUser.email || profileEmail || "").toLowerCase();
-      const isAdminEmail = ADMIN_EMAILS.includes(normalizedEmail as (typeof ADMIN_EMAILS)[number]);
+      const isAdminUser = isAdminEmail(normalizedEmail);
 
       setLikedCount(likedCountValue);
-      setIsAdmin(adminRole || isAdminEmail);
-      setIsEmployee(employeeRole || adminRole || isAdminEmail);
+      setIsAdmin(adminRole || isAdminUser);
+      setIsEmployee(employeeRole || adminRole || isAdminUser);
       setIsSeniorEmployee(SENIOR_EMPLOYEE_EMAILS.includes(normalizedEmail as (typeof SENIOR_EMPLOYEE_EMAILS)[number]));
     } finally {
       setIsLoading(false);

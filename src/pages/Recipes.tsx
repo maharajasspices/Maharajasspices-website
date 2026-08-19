@@ -61,9 +61,9 @@ const defaultRecipesData: Recipe[] = [
       "1 tomato, finely chopped",
       "1 medium potato, cubed",
       "Salt, to taste",
-      "2 whole star anise",
-      "1 cinnamon stick",
-      "20g Maharaja's crushed ginger & garlic",
+      "2 Maharaja's Star Aniseed",
+      "1 Maharaja's Cinnamon Stick",
+      "20g Maharaja's Crushed Ginger & Garlic",
       "Fresh coriander, for garnish",
     ],
     instructions: [

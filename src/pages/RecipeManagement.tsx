@@ -12,6 +12,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { useToast } from "@/hooks/use-toast";
 import { Pencil, Trash2, Plus, X } from "lucide-react";
 import { getSecureErrorMessage } from "@/utils/errorHandling";
+import { isAdminEmail } from "@/lib/admin";
 
 const RecipeManagement = () => {
   const [recipes, setRecipes] = useState<any[]>([]);
@@ -56,10 +57,9 @@ const RecipeManagement = () => {
       .eq("user_id", session.user.id);
 
     const hasEmployeeRole = roles?.some(r => r.role === "employee" || r.role === "admin");
-    const userEmail = (session.user.email || "").toLowerCase();
-    const isAdminEmail = ["bradley@maharajasspices.co.za", "zulaigah.benjamin@maharajasspices.co.za"].includes(userEmail);
+    const isAdminUser = isAdminEmail(session.user.email);
     
-    if (!hasEmployeeRole && !isAdminEmail) {
+    if (!hasEmployeeRole && !isAdminUser) {
       toast({
         variant: "destructive",
         title: "Access Denied",

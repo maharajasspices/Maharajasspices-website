@@ -5,6 +5,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import DashboardProtection from "@/components/DashboardProtection";
 import { usePortalAccess } from "@/hooks/usePortalAccess";
+import { isAdminEmail } from "@/lib/admin";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
@@ -113,7 +114,7 @@ const EmployeeDashboard = () => {
     }
 
     const normalizedEmail = (portalAccess.user?.email || "").toLowerCase();
-    const isAdminEmail = ["bradley@maharajasspices.co.za", "zulaigah.benjamin@maharajasspices.co.za"].includes(normalizedEmail);
+    const isAdminUser = isAdminEmail(normalizedEmail);
     const isBradleyUser = normalizedEmail === "bradley@maharajasspices.co.za";
 
     setCurrentUser({
@@ -121,7 +122,7 @@ const EmployeeDashboard = () => {
       email: normalizedEmail,
       full_name: portalAccess.user?.user_metadata?.full_name ?? null,
     });
-    setIsAdmin(portalAccess.isAdmin || isAdminEmail);
+    setIsAdmin(portalAccess.isAdmin || isAdminUser);
     setIsBradley(isBradleyUser);
     setIsSeniorEmployee(portalAccess.isSeniorEmployee);
     setIsAuthorized(true);

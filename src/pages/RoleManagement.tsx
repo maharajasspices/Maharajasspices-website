@@ -12,6 +12,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Trash2, Shield, UserPlus } from "lucide-react";
 import { z } from "zod";
 import { getSecureErrorMessage } from "@/utils/errorHandling";
+import { isAdminEmail } from "@/lib/admin";
 
 const emailSchema = z.object({
   email: z.string().trim().email("Invalid email format").max(255, "Email must be less than 255 characters")
@@ -53,10 +54,9 @@ const RoleManagement = () => {
         .eq("user_id", session.user.id);
 
       const hasAdminRole = roles?.some(r => r.role === "admin");
-      const userEmail = (session.user.email || "").toLowerCase();
-      const isAdminEmail = ["bradley@maharajasspices.co.za", "zulaigah.benjamin@maharajasspices.co.za"].includes(userEmail);
+      const isAdminUser = isAdminEmail(session.user.email);
       
-      if (!hasAdminRole && !isAdminEmail) {
+      if (!hasAdminRole && !isAdminUser) {
         toast({
           variant: "destructive",
           title: "Access Denied",

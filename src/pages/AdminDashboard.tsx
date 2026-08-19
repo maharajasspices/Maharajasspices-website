@@ -21,6 +21,7 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle } from "@/components/ui/alert-dialog";
 import { z } from "zod";
 import { getSecureErrorMessage } from "@/utils/errorHandling";
+import { isAdminEmail } from "@/lib/admin";
 
 // Product validation schema
 const productSchema = z.object({
@@ -239,10 +240,9 @@ const AdminDashboard = () => {
 
     const hasAdminRole = roles?.some(r => r.role === "admin");
     const hasEmployeeRole = roles?.some(r => r.role === "employee");
-    const userEmail = (session.user.email || "").toLowerCase();
-    const isAdminEmail = ["bradley@maharajasspices.co.za", "zulaigah.benjamin@maharajasspices.co.za"].includes(userEmail);
+    const isAdminUser = isAdminEmail(session.user.email);
 
-    if (!hasAdminRole && !hasEmployeeRole && !isAdminEmail) {
+    if (!hasAdminRole && !hasEmployeeRole && !isAdminUser) {
       toast({
         variant: "destructive",
         title: "Access Denied",

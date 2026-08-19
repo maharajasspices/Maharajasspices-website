@@ -15,6 +15,7 @@ import DOMPurify from 'dompurify';
 import { useSEO } from "@/hooks/useSEO";
 import { verifyHuman } from "@/utils/passwordValidator";
 import { fullContentCheck } from "@/utils/contentModeration";
+import { isAdminEmail } from "@/lib/admin";
 
 interface Post {
   id: string;
@@ -83,9 +84,8 @@ const ForumTopic = () => {
         .eq('user_id', session.user.id);
       
       const hasEmployeeRole = roles?.some(r => r.role === 'employee' || r.role === 'admin');
-      const userEmail = (session.user.email || "").toLowerCase();
-      const isAdminEmail = ["bradley@maharajasspices.co.za", "zulaigah.benjamin@maharajasspices.co.za"].includes(userEmail);
-      setIsEmployee(hasEmployeeRole || isAdminEmail || false);
+      const isAdminUser = isAdminEmail(session.user.email);
+      setIsEmployee(hasEmployeeRole || isAdminUser || false);
     }
   };
 

@@ -4,14 +4,20 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Lock, Loader2 } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
+import { isAdminEmail } from "@/lib/admin";
 
 interface DashboardProtectionProps {
   children: React.ReactNode;
 }
 
+const DASHBOARD_AUTH_KEY = "dashboard_authenticated";
+
 const DashboardProtection = ({ children }: DashboardProtectionProps) => {
   const [password, setPassword] = useState("");
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [isAuthenticated, setIsAuthenticated] = useState(() => {
+    // Check sessionStorage on initial load so auth persists across page navigation
+    return sessionStorage.getItem(DASHBOARD_AUTH_KEY) === "true";
+  });
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
@@ -30,11 +36,12 @@ const DashboardProtection = ({ children }: DashboardProtectionProps) => {
         return;
       }
 
-      const userEmail = (session.user.email || "").toLowerCase();
-      const isAdminEmail = ["bradley@maharajasspices.co.za", "zulaigah.benjamin@maharajasspices.co.za"].includes(userEmail);
+      const userEmail = session.user.email || "";
+      const isAdminUser = isAdminEmail(userEmail);
 
       // Admin emails bypass the password check
-      if (isAdminEmail) {
+      if (isAdminUser) {
+        sessionStorage.setItem(DASHBOARD_AUTH_KEY, "true");
         setIsAuthenticated(true);
         setError("");
         setIsLoading(false);
@@ -50,6 +57,7 @@ const DashboardProtection = ({ children }: DashboardProtectionProps) => {
       const result = response.data || {};
       
       if (result?.success) {
+        sessionStorage.setItem(DASHBOARD_AUTH_KEY, "true");
         setIsAuthenticated(true);
         setError("");
       } else {
