@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Clock, Users, X, Maximize2 } from "lucide-react";
+import { Clock, Users, X, Maximize2, ExternalLink } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { useSEO } from "@/hooks/useSEO";
@@ -10,6 +11,8 @@ import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { supabase } from "@/integrations/supabase/client";
 import { RecipeIngredientLink } from "@/components/RecipeIngredientLink";
+import type { Recipe as RecipeType } from "@/utils/recipeData";
+import { getSlugFromId } from "@/utils/recipeSlug";
 
 // Import recipe images for fallback
 import beefCurryImg from "@/assets/recipe-beef-curry.webp";
@@ -31,20 +34,11 @@ import familyChickenStewImg from "@/assets/recipe-family-chicken-stew.webp";
 import palaceOxtailImg from "@/assets/recipe-palace-oxtail-stew.webp";
 import richRegalBeefImg from "@/assets/recipe-rich-regal-beef-onion-stew.webp";
 
-interface Recipe {
-  id?: string;
-  title: string;
-  description: string;
-  image: string;
-  category: string;
-  time: number;
-  servings: number;
-  ingredients: string[];
-  instructions: string[];
-}
+// Use shared Recipe type from utils
+type Recipe = RecipeType;
 
 // Default recipes as fallback
-const defaultRecipesData: Recipe[] = [
+export const defaultRecipesData: Recipe[] = [
   {
     title: "Beef Curry",
     description:
@@ -804,9 +798,17 @@ const Recipes = () => {
                         </div>
                       </div>
 
-                      <Button variant="outline" className="w-full" onClick={() => setSelectedRecipe(recipe)}>
-                        View Full Recipe
-                      </Button>
+                      <div className="space-y-2">
+                        <Button asChild variant="outline" className="w-full">
+                          <Link to={`/recipe/${getSlugFromId(recipe.title, recipe.id)}`}>
+                            <ExternalLink className="mr-2 h-4 w-4" />
+                            View Full Recipe
+                          </Link>
+                        </Button>
+                        <Button variant="ghost" className="w-full text-primary" onClick={() => setSelectedRecipe(recipe)}>
+                          Quick View
+                        </Button>
+                      </div>
                     </CardContent>
                   </Card>
                 ))}

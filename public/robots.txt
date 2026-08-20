@@ -35,16 +35,47 @@ Disallow: /employee-dashboard/
 Disallow: /role-management
 Disallow: /recipe-management
 
+# Block secure/e-commerce pages from indexing (no SEO value)
+Disallow: /checkout
+Disallow: /checkout/
+Disallow: /cart
+Disallow: /cart/
+Disallow: /payment-success
+Disallow: /payment-cancelled
+Disallow: /auth
+Disallow: /forgot-password
+Disallow: /reset-password
+Disallow: /account
+Disallow: /account/
+Disallow: /liked-items
+Disallow: /recently-viewed
+Disallow: /newsletter/unsubscribe
+Disallow: /track-parcel
+
+# Block forum "coming soon" placeholder (no content value yet)
+Disallow: /forum
+Disallow: /forum/
+Disallow: /forum/category/
+Disallow: /forum/topic/
+
 # Allow important pages
 Allow: /shop
+Allow: /shop/
 Allow: /about
 Allow: /recipes
+Allow: /recipes/
+Allow: /recipe/
 Allow: /contact
 Allow: /store-locator
-Allow: /forum
 Allow: /careers
 Allow: /become-stockist
 Allow: /track-order
+Allow: /product/
+Allow: /terms
+Allow: /privacy-policy
+Allow: /shipping-policy
+Allow: /refund-policy
+Allow: /popia-compliance
 
 # Sitemap location
 Sitemap: https://maharajasspices.co.za/sitemap.xml

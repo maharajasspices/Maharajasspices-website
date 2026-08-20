@@ -16,6 +16,7 @@ import { z } from "zod";
 import { getCustomErrorMessage } from "@/utils/errorHandling";
 import { rateLimiter } from "@/utils/rateLimiter";
 import { trackEvent } from "@/utils/analytics";
+import { trackBeginCheckout } from "@/components/GoogleAnalytics";
 import { redirectToPayFast } from "@/utils/payfast";
 import { Loader2, ShieldCheck, Truck, CreditCard, Package, AlertCircle, Tag, X, MessageCircle } from "lucide-react";
 import { Textarea } from "@/components/ui/textarea";
@@ -406,6 +407,18 @@ const Checkout = () => {
   };
 
   const handlePlaceOrder = async () => {
+    // Track begin checkout for analytics
+    trackBeginCheckout(
+      items.map(item => ({
+        item_id: item.productId,
+        item_name: item.name,
+        price: item.price,
+        quantity: item.quantity,
+        item_variant: item.variant || item.weight || undefined,
+      })),
+      calculateTotal()
+    );
+
     // Validation
     if (deliveryMethod === 'delivery' && !selectedRate) {
       toast({

@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useEffect, useMemo, useState } from "react";
+import { trackAddToCart } from "@/components/GoogleAnalytics";
 
 export type CartItem = {
   productId: string;
@@ -44,6 +45,15 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
   }, [items]);
 
   const addItem: CartContextValue["addItem"] = (item, quantity = 1) => {
+    // Track add to cart event for analytics
+    trackAddToCart({
+      item_id: item.productId,
+      item_name: item.name,
+      price: item.price,
+      quantity,
+      item_variant: item.variant || item.weight || undefined,
+    });
+
     setItems((prev) => {
       // Find existing item by productId AND variant (if specified)
       const existing = prev.find((i) => 

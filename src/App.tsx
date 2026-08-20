@@ -24,6 +24,7 @@ const About = lazy(() => import("./pages/About"));
 const Contact = lazy(() => import("./pages/Contact"));
 const Auth = lazy(() => import("./pages/Auth"));
 const Recipes = lazy(() => import("./pages/Recipes"));
+const RecipeDetail = lazy(() => import("./pages/RecipeDetail"));
 const Forum = lazy(() => import("./pages/Forum"));
 const ForumCategory = lazy(() => import("./pages/ForumCategory"));
 const ForumTopic = lazy(() => import("./pages/ForumTopic"));
@@ -116,6 +117,7 @@ const AppContent = () => {
             <Route path="/cart" element={<Cart />} />
             <Route path="/checkout" element={<Checkout />} />
             <Route path="/recipes" element={<Recipes />} />
+            <Route path="/recipe/:slug" element={<RecipeDetail />} />
             <Route path="/forum" element={<Forum />} />
             <Route path="/forum/category/:categoryId" element={<ForumCategory />} />
             <Route path="/forum/topic/:topicId" element={<ForumTopic />} />

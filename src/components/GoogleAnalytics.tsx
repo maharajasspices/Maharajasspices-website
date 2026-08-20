@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 
-const GA_MEASUREMENT_ID = "G-2HL1Y9KJPQ";
+const GA_MEASUREMENT_ID = import.meta.env.VITE_GA_MEASUREMENT_ID || "G-2HL1Y9KJPQ";
 
 export const GoogleAnalytics = () => {
   const location = useLocation();
@@ -35,6 +35,7 @@ export const GoogleAnalytics = () => {
 
     gtag("config", GA_MEASUREMENT_ID, {
       send_page_view: true,
+      anonymize_ip: true,
     });
   }, []);
 
@@ -84,6 +85,28 @@ export const trackAddToCart = (item: any) => {
     currency: "ZAR",
     value: item.price,
     items: [item],
+  });
+};
+
+// Track view_item ecommerce event
+export const trackViewItem = (item: any) => {
+  if (!window.gtag) return;
+
+  window.gtag("event", "view_item", {
+    currency: "ZAR",
+    value: item.price,
+    items: [item],
+  });
+};
+
+// Track begin_checkout ecommerce event
+export const trackBeginCheckout = (items: any[], value: number) => {
+  if (!window.gtag) return;
+
+  window.gtag("event", "begin_checkout", {
+    currency: "ZAR",
+    value,
+    items,
   });
 };
 

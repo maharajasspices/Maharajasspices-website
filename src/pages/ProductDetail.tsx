@@ -16,6 +16,7 @@ import { useRecentlyViewed } from "@/hooks/useRecentlyViewed";
 import { useCart } from "@/contexts/CartContext";
 import { useProduct } from "@/hooks/useProducts";
 import { generateProductStructuredData } from "@/utils/seo";
+import { trackViewItem } from "@/components/GoogleAnalytics";
 import ProductReviews from "@/components/ProductReviews";
 import { useCurrency } from "@/hooks/useCurrency";
 import { cleanProductName } from "@/utils/productName";
@@ -84,6 +85,16 @@ const ProductDetail = () => {
         image: product.images?.[0] || "/placeholder.svg",
         in_stock: product.in_stock,
         category: product.category,
+      });
+
+      // Track product view for analytics
+      trackViewItem({
+        item_id: product.id,
+        item_name: displayName || product.name,
+        item_brand: product.brand,
+        item_category: product.category,
+        price: currentPrice,
+        quantity: 1,
       });
     }
   }, [id, product, addRecentlyViewed, currentPrice, displayName]);
