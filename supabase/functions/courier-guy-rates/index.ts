@@ -29,7 +29,7 @@ function normalizeServiceLevel(code?: string | null): string {
   return SERVICE_LEVEL_ALIASES[normalized] || normalized;
 }
 
-// Maharaja's Spices collection address
+// Our Collection Address, If they would like to collect instead of doing a pickup.
 const COLLECTION_ADDRESS = {
   type: "business",
   company: "Maharaja's Spices",
