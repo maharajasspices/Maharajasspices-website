@@ -90,9 +90,9 @@ const Index = () => {
     [recentlyViewed, products]
   );
   useSEO({
-    title: "Maharaja's Spices - Premium Spices, Sauces & Seasonings | Shop Online South Africa",
-    description: "Shop premium quality spices, sauces, marinades and seasonings online at Maharaja's Spices. Wholesale and retail since 2012. Fast delivery across South Africa. Curry powder, garam masala, tandoori & more.",
-    keywords: "Maharaja's Spices, buy spices online South Africa, premium spices, sauces, marinades, seasonings, wholesale spices, curry powder, garam masala, tandoori masala, spice shop online, G-Force sauces, Mother's Hand pastes",
+    title: "Maharaja's Spices | Premium Spices & Sauces in South Africa",
+    description: "Shop premium spices, curry powders, sauces, marinades and seasonings from Maharaja's Spices. Buy online with delivery across South Africa. Wholesale available.",
+    keywords: "Maharaja's Spices, buy spices online South Africa, premium spices, sauces, marinades, seasonings, wholesale spices, curry powder, garam masala, tandoori masala, spice shop online, G-Force sauces,tumeric spice durban, Durban, where to buy spices in durban, Online spice shop wiht delivery, Mother's Hand pastes",
     type: "website",
     url: "https://maharajasspices.co.za"
   });
@@ -256,9 +256,20 @@ const Index = () => {
               </Button>
               </div>
             </RevealOnScroll>
+            
+            
             <RevealOnScroll direction="right">
-            <img src={spicesDisplayImage} alt="Colorful spices display showcasing variety of premium seasonings" className="w-full h-full object-cover rounded-lg shadow-[var(--shadow-strong)] hover:scale-105 transition-transform duration-500" width="1920" height="1280" loading="eager" decoding="async" />
+              <img
+                src={spicesDisplayImage}
+                alt="Colorful spices display showcasing variety of premium seasonings"
+                className="w-full h-full object-cover rounded-lg shadow-[var(--shadow-strong)] hover:scale-105 transition-transform duration-500"
+                width="665"
+                height="443"
+                loading="eager"
+                decoding="async"
+              />
             </RevealOnScroll>
+
           </div>
         </div>
       </section>

@@ -11,6 +11,7 @@ import { useCartDrawer } from "@/contexts/CartDrawerContext";
 import { useCurrency } from "@/hooks/useCurrency";
 import { cleanProductName } from "@/utils/productName";
 import { normalizeProductVariants } from "@/utils/productVariants";
+import { createProductSlug } from "@/utils/productSlug";
 
 interface ProductVariant {
   weight: string;
@@ -45,6 +46,11 @@ const ProductCard = ({ product }: ProductCardProps) => {
   const { format, currency } = useCurrency();
 
   const displayName = useMemo(() => cleanProductName(product.name), [product.name]);
+  
+  const productSlug = useMemo(
+    () => createProductSlug(product.name, product.weight),
+    [product.name, product.weight],
+  );
 
   // Parse variants (backward compatible: supports legacy { size, price })
   const variants = useMemo(() => normalizeProductVariants(product.variants), [product.variants]);
@@ -100,7 +106,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
   const handleVariantClick = (e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
-    navigate(`/product/${product.id}`);
+    navigate(`/product/${productSlug}`);
   };
 
   const toggleQuantitySelector = (e: React.MouseEvent) => {
@@ -111,7 +117,11 @@ const ProductCard = ({ product }: ProductCardProps) => {
 
   return (
     <Card className="group overflow-hidden hover:shadow-[var(--shadow-elegant)] transition-all duration-300 animate-fade-in cursor-pointer">
-      <Link to={`/product/${product.id}`} className="block">
+      <Link
+  to={`/product/${productSlug}`}
+  className="block"
+  onClick={() => console.log("PRODUCT LINK CLICKED:", productSlug)}
+>
         <div className="relative overflow-hidden aspect-square bg-background">
           <img 
             src={product.image} 

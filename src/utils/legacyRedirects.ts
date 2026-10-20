@@ -61,20 +61,10 @@ export const getLegacyRedirect = (pathname: string): RedirectResult => {
     return { shouldRedirect: true, newPath: '/shop' };
   }
   
-  // WordPress single product pages -> Shop (can't map individual products easily)
-  // Pattern: /product/product-slug (text-based slugs only)
-  // IMPORTANT: Do NOT redirect UUID-based product IDs (used by React app)
-  // UUID pattern: xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
-  const productMatch = lowerPath.match(/^\/product\/([^/]+)\/?$/);
-  if (productMatch) {
-    const productId = productMatch[1];
-    // Check if it's a valid UUID (React app format) - don't redirect these
-    const uuidPattern = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
-    if (!uuidPattern.test(productId)) {
-      // It's a WordPress text slug, redirect to shop
-      return { shouldRedirect: true, newPath: '/shop' };
-    }
-  }
   
+  // Product URLs are handled by the React app.
+  // Support both existing UUID URLs and new SEO-friendly product slugs.
+  // Do not redirect /product/:id to /shop.
+
   return { shouldRedirect: false, newPath: '' };
 };
