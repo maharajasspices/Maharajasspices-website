@@ -348,13 +348,15 @@ const ProductDetail = () => {
           </RevealOnScroll>
         </div>
 
-        {id && (
-          <div className="mt-12">
-            <RevealOnScroll direction="up">
-              <ProductReviews productId={id} />
-            </RevealOnScroll>
-          </div>
-        )}
+       
+{product?.id && (
+  <div className="mt-12">
+    <RevealOnScroll direction="up">
+      <ProductReviews productId={product.id} />
+    </RevealOnScroll>
+  </div>
+)}
+
       </main>
 
       <Footer />

@@ -44,68 +44,39 @@ export const useProduct = (id: string | undefined) => {
     queryFn: async () => {
       if (!id) return null;
 
-      const selectFields =
-        "id, name, brand, price, original_price, images, category, in_stock, weight, variants, description";
-
+      // First, preserve support for existing UUID product URLs.
       const isUUID =
         /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(id);
 
-      let data: any = null;
+      const selectFields =
+        "id, name, brand, price, original_price, images, category, in_stock, weight, variants, description";
 
-      // Keep existing UUID product links working.
       if (isUUID) {
-        const { data: uuidProduct, error } = await supabase
+        const { data, error } = await supabase
           .from("products")
           .select(selectFields)
           .eq("id", id)
           .maybeSingle();
 
         if (error) throw error;
-        data = uuidProduct;
+        if (data) return data;
       }
 
-      // If the URL contains a slug, find the matching product.
-      if (!data) {
-        const { data: products, error } = await supabase
-          .from("products")
-          .select(selectFields);
+      // Otherwise, find the product using its SEO-friendly slug.
+      const { data, error } = await supabase
+        .from("products")
+        .select(selectFields);
 
-        if (error) throw error;
+      if (error) throw error;
 
-        data =
-          products?.find(
-            (product) =>
-              createProductSlug(product.name, product.weight) === id,
-          ) ?? null;
-      }
-
-      if (!data) return null;
-
-      // Convert Supabase fields into the format used by the product pages.
-      return {
-        id: data.id,
-        name: data.name,
-        brand: data.brand,
-        price: Number(data.price),
-        originalPrice: data.original_price
-          ? Number(data.original_price)
-          : undefined,
-        image:
-          Array.isArray(data.images) && data.images.length > 0
-            ? data.images[0]
-            : "/placeholder.svg",
-        category: data.category,
-        inStock: data.in_stock ?? true,
-        weight: data.weight ?? null,
-        variants: data.variants ?? null,
-        description: data.description ?? "",
-      };
+      return data.find(
+        (product) =>
+          createProductSlug(product.name, product.weight) === id,
+      ) ?? null;
     },
     enabled: !!id,
     staleTime: CACHE_TIME,
     gcTime: CACHE_TIME * 2,
   });
 };
-
-
 
